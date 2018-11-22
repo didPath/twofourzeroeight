@@ -35,12 +35,47 @@ namespace twozerofoureight
             HandleChanges();
         }
 
+        public bool IsMergeable(int[,] board)
+        {
+            int readyToMerge = 0;
+            for(int i = 0; i < 3; i++)
+            {
+                for(int j = 0; j < 4; j++)
+                {
+                    if (board[i, j] == board[i + 1, j]) readyToMerge++;
+                }
+            }
+            for (int i=0; i < 4; i++)
+            {
+                for(int j = 0; j < 3; j++)
+                {
+                    if (board[i, j] == board[i, j + 1]) readyToMerge++;
+                }
+            }
+            if (readyToMerge == 0) return false;
+            return true;
+        }
+
+        public bool IsBoardFull(int[,] board)
+        {
+            int count = 0;
+            for(int i = 0; i < 4; i++)
+            {
+                for (int j=0; j<4; j++)
+                {
+                    if (board[i, j] != 0) count++;
+                }
+            }
+            if (count == 16) return true;
+            return false;
+        }
+
         public int[,] GetBoard()
         {
             return board;
         }
 
-        private void AddRandomSlot()
+        public void AddRandomSlot()
         {
             while (true)
             {
@@ -49,7 +84,11 @@ namespace twozerofoureight
                 if (board[x, y] == 0)
                 {
                     board[x, y] = 2;
-                    return;
+                    break;
+                }
+                if (IsBoardFull(board))
+                {
+                    break;
                 }
             }
         }

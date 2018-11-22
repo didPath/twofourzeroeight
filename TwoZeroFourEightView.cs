@@ -77,6 +77,18 @@ namespace twozerofoureight
             UpdateTile(lbl31, board[3, 1]);
             UpdateTile(lbl32, board[3, 2]);
             UpdateTile(lbl33, board[3, 3]);
+            int sum = 0;
+            for(int i=0; i < 4; i++)
+            {
+                for(int j = 0; j < 4; j++)
+                {
+                    sum += board[i, j];
+                }
+            }
+            SC.Text = "Score : " + sum.ToString();
+            if((((TwoZeroFourEightModel)model).IsBoardFull(board))&& !(((TwoZeroFourEightModel)model).IsMergeable(board))){
+                MessageBox.Show("GAME OVER!");
+            }
         }
 
         private void btnLeft_Click(object sender, EventArgs e)
@@ -99,5 +111,48 @@ namespace twozerofoureight
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
         }
 
+        private void label1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+
+        }
+
+        private void TwoZeroFourEightView_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TwoZeroFourEightView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Right)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
+            }
+            if (e.KeyCode == Keys.Left)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+            }
+            if(e.KeyCode == Keys.Up)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.UP);
+            }
+            if (e.KeyCode == Keys.Down)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+            }
+        }
+
+        private void ScoreCal(object sender, EventArgs e)
+        {
+
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void SC_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

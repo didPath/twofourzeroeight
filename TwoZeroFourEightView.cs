@@ -85,7 +85,7 @@ namespace twozerofoureight
                     sum += board[i, j];
                 }
             }
-            SC.Text = "Score : " + sum.ToString();
+            SC.Text = "Score : "  + sum.ToString();
             if((((TwoZeroFourEightModel)model).IsBoardFull(board))&& !(((TwoZeroFourEightModel)model).IsMergeable(board))){
                 MessageBox.Show("GAME OVER!");
             }
